@@ -4,7 +4,7 @@ email: anton@antonbabenko.com
 description: > # this means to ignore newlines until "baseurl:"
   Personal blog where I write mostly about web-development and business.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://antonbabenko.com" # the base hostname & protocol for your site
+url: "http://blog.antonbabenko.com" # the base hostname & protocol for your site
 twitter_username: antonbabenko
 github_username:  antonbabenko
 
