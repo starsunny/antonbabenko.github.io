@@ -2,10 +2,10 @@
 title: Anton Babenko's blog
 email: anton@antonbabenko.com
 description: > # this means to ignore newlines until "baseurl:"
-  Personal blog of Anton Babenko. Mostly about web-development and business balance.
+  Personal blog where I write mostly about web-development and business.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://antonbabenko.com" # the base hostname & protocol for your site
-#twitter_username: antonbabenko
+twitter_username: antonbabenko
 github_username:  antonbabenko
 
 timezone: Europe/Oslo
