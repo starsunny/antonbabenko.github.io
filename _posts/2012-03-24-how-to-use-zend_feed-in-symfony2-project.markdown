@@ -1,24 +1,41 @@
 ---
 layout: post
-title:  "Splunk Enterprise on Amazon Linux"
-date:   2012-05-19 10:00:15
-categories: web-development
+title:  "How to use Zend_Feed in Symfony2 project"
+date:   2012-03-24 14:40:25
+categories: symfony
 ---
-[Splunk][http://www.splunk.com/] is one of the best tool for log analysis with some flaws in Free edition (no user authentication and 500mb indexing limit per day). Most setups don't need to have user authentication, because splunk can stay behind nginx proxy and have http basic auth there. Also for many sites the limit of 500mb/day is fairy high limit. Though, one of my site has been indexing more than 500mb of logs per day several times per month and according to Splunk Free License it broke the terms of use (huh?), which means that I couldn't even search on already indexed logs.
 
-Splunk Enterprise Trial version works for 60 days and then you have to migrate to Free license (see above) or buy Enterprise license (it is very expensive if you want to have it on small sites like my [imagepush.to][http://imagepush.to]). The solution I found is to reinstall it every 2 months:
+***Update: As of 3.1.2015 there is much nicer approach to generate feeds - [eko/FeedBundle]***
 
-{% highlight bash %}
-# remove splunk, if you have it installed already
-sudo rpm -e splunk
+Original article below has been written for Symfony 2.0.
 
-mkdir ~/splunk_tmp
-cd ~/splunk_tmp
+There are [several Symfony2 bundles to generate feeds]. For [imagepush.to] I have to generate a variety of feeds and none of available bundles was good enough, so I want to use Zend_Feed. I didn't want to clone bloated Zend Framework into my project, and luckily KnpLabs have made repos with all popular Zend components already. Here is what I have in **deps**:
 
-# Splunk for Amazon Linux (32bit)
-curl -O http://216.221.226.44/releases/4.3.2/splunk/linux/splunk-4.3.2-123586.i386.rpm
-sudo rpm -U splunk-4.3.2-123586.i386.rpm
-sudo /opt/splunk/bin/splunk start
+{% highlight ini %}
+[zend-feed]
+    git=http://github.com/KnpLabs/zend-feed.git
+    target=Zend/Feed
+
+[zend-loader]
+    git=http://github.com/KnpLabs/zend-loader.git
+    target=Zend/Loader
+
+[zend-stdlib]
+    git=http://github.com/KnpLabs/zend-stdlib.git
+    target=Zend/Stdlib
 {% endhighlight %}
 
-Then login to splunk web and set password. All settings will be in place already.
+and this is in <strong>autoload.php</strong>:
+{% highlight php %}
+<?php
+$loader->registerNamespaces(array(
+    // ...
+    'Zend'            => __DIR__.'/../vendor'
+    // ...
+));
+{% endhighlight %}
+
+
+[several Symfony2 bundles to generate feeds]:   http://knpbundles.com/search?q=feed
+[imagepush.to]:                                 http://imagepush.to/
+[eko/FeedBundle]:                               https://github.com/eko/FeedBundle

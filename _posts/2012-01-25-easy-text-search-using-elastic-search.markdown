@@ -1,35 +1,37 @@
 ---
 layout: post
-title:  "Elastica: reindexing on demand"
-date:   2012-03-09 12:02:02
+title:  "Easy text search using Elastic Search"
+date:   2012-01-25 11:12:08
 categories: symfony
 ---
 
 This post was written for Symfony 2.0 long time ago. Things below may not work any more.
 
-I used to make sure that [FOQElasticaBundle] is updating search index after record is created or updated, and there are listeners as specified in [documentation]. It works fine for basic needs out of the box, but I have some index fields, which were populated from another related objects, which I do lazy-fetch, so I ended up with this code:
+Recently I used to add very plain text search to [ne.no] and since I'm using [Elastic Search] with [FOQElasticaBundle] it was easy to achieve.
 
 {% highlight php %}
 <?php
-// do something with $property
-$em->persist($property);
-$em->flush();
-$em->clear();
+$textQuery = new \Elastica_Query_QueryString();
+$textQuery->setFields(array("address", "name", "city", "searchPartNames", "searchCompanyName"));
+$textQuery->setDefaultOperator("AND");
+$textQuery->setQueryString($selectedText);
 
-// reload property from the database to get saved data with all related objects needed for index
-$property = $em->find('MyBundle:Property', $property->getId());
-
-// reindex
-$type = $this->kernel->getContainer()->get('foq_elastica.index.website.property');
-$modelTransformer = new \FOQ\ElasticaBundle\Transformer\ModelToElasticaAutoTransformer();
-$mapping = $type->getMapping();
-$fields = array_keys($mapping["property"]["properties"]);
-
-$objectPersister = new \FOQ\ElasticaBundle\Persister\ObjectPersister($type, $modelTransformer, 'My\MyBundle\Entity\Property', $fields);
-$objectPersister->replaceOne($property);
+$tmpTexts = array();
+foreach (explode(" ", $selectedText) as $oneWord) {
+    $oneWord = trim($oneWord);
+    if ($oneWord == "")
+        continue;
+    if (preg_match("/^[0-9]+/", $oneWord)) {
+        $tmpTexts[] = $oneWord;
+    } else {
+        $tmpTexts[] = $oneWord . "*";
+    }
+}
+$selectedText = implode(" ", $tmpTexts);
 {% endhighlight %}
 
-The trick here is to clear doctrine entity manager and then fetch object to replace one more time.
+Added star-wildcard after all words, but not after numbers, so that user is able to find correct building address located on Drammensgt or Drammensvn if he searches for "Drammens 171".
 
-[FOQElasticaBundle]:               https://github.com/Exercise/FOQElasticaBundle
-[documentation]: https://github.com/Exercise/FOQElasticaBundle/blob/master/README.md
+[ne.no]:              http://ne.no/
+[Elastic Search]:     http://www.elasticsearch.com/
+[FOQElasticaBundle]:  https://github.com/Exercise/FOQElasticaBundle
