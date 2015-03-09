@@ -26,13 +26,13 @@ Error "502 Bad Gateway"
 The error I was struggling was "502 Bad Gateway - CloudFront attempted to establish a connection with the origin, but either the attempt failed or the origin closed the connection".
 
 Even after reading such detailed error message I could not find the right combination of values for:
-1) ELB timeouts and draining connection
-2) timeout_idle for Varnish
-3) nginx keep-alive setting
+* ELB timeouts and draining connection
+* timeout_idle for Varnish
+* nginx keep-alive setting
 
 After some time AWS support gave a clear explanation for the problem:
 
-    Varnish apparently sitting with a timeout_idle of 20 seconds, means that Varnish will at times close the TCP connection that the ELB has established to it, while the ELB will continue to think that this connection is still available. If the ELB then tries to send a client request down this connection at a later stage, it will receive an exception, and this will cause the ELB to close the client-side connection with no response.
+> Varnish apparently sitting with a timeout_idle of 20 seconds, means that Varnish will at times close the TCP connection that the ELB has established to it, while the ELB will continue to think that this connection is still available. If the ELB then tries to send a client request down this connection at a later stage, it will receive an exception, and this will cause the ELB to close the client-side connection with no response.
 
 Sounds clear, I modified timeouts according to their suggestions (most critical piece was to increase timeout_idle in Varnish config from 20 to 60 seconds and it all just works).
 
@@ -41,7 +41,7 @@ BUT! I would not write this post, if it would be just one line fix... :)
 Question: Why there is even a connection between ELB and the backend, if I don't make any requests ?
 Answer:
 
-    ELB pre-opens TCP connections to the back-ends, even when it does not have a request to dispatch on them. It does this as a performance optimization to reduce latency when a request is eventually available to be dispatched along the TCP connection. The ELB assumed that any TCP connection it has between itself and your back-ends can be left idle for the idle timeout and that the back-end will not close it before this time."
+> ELB pre-opens TCP connections to the back-ends, even when it does not have a request to dispatch on them. It does this as a performance optimization to reduce latency when a request is eventually available to be dispatched along the TCP connection. The ELB assumed that any TCP connection it has between itself and your back-ends can be left idle for the idle timeout and that the back-end will not close it before this time."
 
 This answer put everything together and it explained why I didn't see an issue while debugging it with ELB excluded.
 
@@ -59,11 +59,11 @@ Varnish tips
 The biggest performance improvement happened after I revised parts of Varnish configs regarding cookies and ESI, so that average page load time decreased from 1 second per page to 150ms.
 
 Few points on that:
-1) Try to make an application to serve as much content as possible independently of cookies. Criticise your work!
-2) Whitelist just accepted cookie names (should be always in-sync with developers and marketing people who like to add something with Google Tag Manager)
-3) When your application depends on some cookies then consider to put that part of your application info light-weight ESI call, which will do just a little cookie-dependent-magic, while the rest of the page is cookie agnostic (see point 1)
-4) When your application is setting cookies you ideally should know which urls to allow to set cookies and whitelist them (also require developers awareness)
-5) If performance is very important, then use [libvmob-cookie] instead of modifying headers with regexps.
+* Try to make an application to serve as much content as possible independently of cookies. Criticise your work!
+* Whitelist just accepted cookie names (should be always in-sync with developers and marketing people who like to add something with Google Tag Manager)
+* When your application depends on some cookies then consider to put that part of your application info light-weight ESI call, which will do just a little cookie-dependent-magic, while the rest of the page is cookie agnostic (see point 1)
+* When your application is setting cookies you ideally should know which urls to allow to set cookies and whitelist them (also require developers awareness)
+* If performance is very important, then use [libvmob-cookie] instead of modifying headers with regexps.
 
 
 Use something what provides an integration with caching proxy, so that developers can control large part of ESI and cookies magic themselves - for PHP there is [FOSHttpCache], which is awesome and it can save a lot of time.
