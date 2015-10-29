@@ -7,7 +7,7 @@ categories: tech
 
 I am using several AWS accounts and previously I used to edit `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` variables by uncommenting pairs of lines in includable file.
 
-Today I found [several] [code snippets] and fixed them to work for me.
+Today I found [several](https://github.com/antonosmond/bash_profile/blob/master/.bash_profile) [code snippets](http://www.jayway.com/2015/09/25/aws-cli-profile-management-made-easy/) and fixed them to work for me.
 
 Install:
 --------
@@ -78,6 +78,3 @@ $ awsp project1-anton
 ```
 
 Now there is autocomplete for available profiles in terminal and I should only edit keys in single file.
-
-[several]:                        https://github.com/antonosmond/bash_profile/blob/master/.bash_profile
-[code snippets]:                  http://www.jayway.com/2015/09/25/aws-cli-profile-management-made-easy/
