@@ -25,41 +25,37 @@ Part of includable shell script (`~/.aws_aliases`, `chmod 755 ~/.aws_aliases`):
 
     function _awsListAll() {
  
-    credentialFileLocation=$(env | grep AWS_SHARED_CREDENTIALS_FILE | cut -d= -f2);
-    if [ -z $credentialFileLocation ]; then
-        credentialFileLocation=~/.aws/credentials
-    fi
+        credentialFileLocation=$(env | grep AWS_SHARED_CREDENTIALS_FILE | cut -d= -f2);
+        if [ -z $credentialFileLocation ]; then
+            credentialFileLocation=~/.aws/credentials
+        fi
  
-    while read line; do
-        if [[ $line == "["* ]]; then echo "$line"; fi;
-    done < $credentialFileLocation;
+        while read line; do
+            if [[ $line == "["* ]]; then echo "$line"; fi;
+        done < $credentialFileLocation;
     };
 
     function _awsSwitchProfile() {
-    if [ -z $1 ]; then  echo "Usage: awsp profilename"; return; fi
+        if [ -z $1 ]; then  echo "Usage: awsp profilename"; return; fi
     
-    exists="$(aws configure get aws_access_key_id --profile $1)"
-    if [[ -n $exists ]]; then
-       export AWS_DEFAULT_PROFILE=$1;
-       export AWS_ACCESS_KEY_ID="$(aws configure get aws_access_key_id --profile $1)"
-       export AWS_SECRET_ACCESS_KEY="$(aws configure get aws_secret_access_key --profile $1)"
-       echo "Switched to AWS Profile: $1";
-       aws configure list
-    fi
+        exists="$(aws configure get aws_access_key_id --profile $1)"
+        if [[ -n $exists ]]; then
+           export AWS_DEFAULT_PROFILE=$1;
+           export AWS_ACCESS_KEY_ID="$(aws configure get aws_access_key_id --profile $1)"
+           export AWS_SECRET_ACCESS_KEY="$(aws configure get aws_secret_access_key --profile $1)"
+           echo "Switched to AWS Profile: $1";
+           aws configure list
+        fi
     };
 
     complete -W "$(cat $HOME/.aws/credentials | grep -Eo '\[.*\]' | tr -d '[]')" _awsSwitchProfile
 
 Relevant part of `~/.bash_profile`:
-```
-source ~/.aws_aliases
 
-alias awsall="_awsListAll"
-
-alias awsp="_awsSwitchProfile"
-
-alias awswho="aws configure list"
-```
+    source ~/.aws_aliases
+    alias awsall="_awsListAll"
+    alias awsp="_awsSwitchProfile"
+    alias awswho="aws configure list"
 
 Usage:
 -----
