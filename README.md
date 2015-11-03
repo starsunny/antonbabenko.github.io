@@ -11,3 +11,4 @@ $ bundle install
 
 Install just Jekyll:
 $ sudo gem install -n /usr/local/bin jekyll
+$ sudo gem install -n /usr/local/bin jekyll-sass-converter
