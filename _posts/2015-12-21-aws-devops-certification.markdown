@@ -10,8 +10,8 @@ Before that I have passed [AWS Certified SysOps Administrator - Associate](https
 
 First, there is not enough blog posts from people who passed AWS DevOps certification, so it was hard to find helpful material to prepare myself. I found only 2 blog posts:
 
-* http://www.ozaws.com/2015/10/30/aws-professional-devops-engineer-certification-tips/
-* http://cantrill.io/certification/aws/2015/10/29/passing-the-aws-devops-engineer-professional-exam.html
+* [AWS Professional DevOps Engineer Certification Tips](http://www.ozaws.com/2015/10/30/aws-professional-devops-engineer-certification-tips/)
+* [Passing the AWS DEVOPS Engineer Professional Exam](http://cantrill.io/certification/aws/2015/10/29/passing-the-aws-devops-engineer-professional-exam.html)
 
 I have been taking CSA-Associate 2 weeks ago and then have been preparing for DevOps mainly during last 3 days (3 complete days where only food and sleep existed, I am not kidding; sorry my little kids).
 
