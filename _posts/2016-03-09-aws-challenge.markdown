@@ -17,7 +17,7 @@ For the beginning I challenged audience with this task:
 
 > We also can't send emails in same request when user register account.
 
-> **Question:** How using SQS and some other AWS services we can achieve the following goals:
+> **Question:** How using SQS and/or some other AWS services we can achieve the following goals:
 
 > 1. user receives confirmation letter as soon as possible;
 > 2. no messages should be lost anytime;
