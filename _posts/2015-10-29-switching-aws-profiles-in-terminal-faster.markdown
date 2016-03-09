@@ -73,6 +73,8 @@ Switch AWS profile:
 ```
 $ awsp
 ```
+
+For example:
 ```
 $ awsp project1-anton
 ```
