@@ -5,6 +5,8 @@ date:   2015-10-29 21:27:08
 categories: tech
 ---
 
+**Upd 10.9.2016: I have just open-sourced an updated version of the script - [https://github.com/antonbabenko/awsp](https://github.com/antonbabenko/awsp). The update is related to using MFA tokens when assuming roles between accounts. If you are looking for the most up-to-date version, then use the link above.**
+
 I am using several AWS accounts and previously I used to edit `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` variables by uncommenting pairs of lines in includable file.
 
 Today I found [several](https://github.com/antonosmond/bash_profile/blob/master/.bash_profile) [code snippets](http://www.jayway.com/2015/09/25/aws-cli-profile-management-made-easy/) and fixed them to work for me.
