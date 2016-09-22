@@ -1,5 +1,5 @@
-blog.antonbabenko.com
-=====================
+www.antonbabenko.com
+====================
 
 Just add content into `_posts/` directory and then run `jekyll serve --watch` to preview changes.
 
