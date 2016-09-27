@@ -12,6 +12,10 @@ development, staging, production) and multiple regions.
 
 Here I follow so called "layered infrastructure principle".
 
+There was very interesting talk about running [Terraform At Scale] by
+Calvin French-Owen (Co-Founder and CTO at Segment) at HashiConf 2016,
+where he was describing same types of challenges I was solving in my setup.
+
 Infrastructure review
 ---------------------
 
@@ -22,7 +26,7 @@ Resources are grouped into layers, where each layer consist only of:
 
 Developer can interact with a single layer, which is identifiable by combination of arguments:
 
-  * [AWS account alias] (`anton-private`, for example)
+  * [AWS account alias] (`company-dev`, for example)
   * Region name (`eu-west-1`, for example) 
   * Layer name (`global`, `shared`, `application`, for example)
 
@@ -145,9 +149,10 @@ Plan ahead
 ----------
 
   * Integrate [Terragrunt]
-  * Simplify `terraform.sh` to not require developer to run `init` every time layer is changed
+  * Simplify `terraform.sh` to not require developer to run `init` every time layer is changed (done, 27.9.2016)
   * Release sample code
 
 
 [AWS account alias]:  http://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html
 [Terragrunt]:         https://github.com/gruntwork-io/terragrunt
+[Terraform At Scale]: https://www.youtube.com/watch?v=RldRDryLiXs
