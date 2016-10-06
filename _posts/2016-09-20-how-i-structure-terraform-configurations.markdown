@@ -138,18 +138,16 @@ Pros
   * Full set of Terraform features (commands and arguments) is supported
   * Versioned layers based on same `tfvars` can be implemented (A/B testing, blue-green deployment)
   * Very easy to integrate with CI pipeline
+  * Locking is implemented using [Terragrunt]
 
 Cons
 ----
 
   * May be hard to limit permissions for Terraform users between state files inside one AWS account (all states files are readable by users in that account, by default)
-  * Locking is not implemented (yet). [Terragrunt] will fix this.
 
 Plan ahead
 ----------
 
-  * Integrate [Terragrunt]
-  * Simplify `terraform.sh` to not require developer to run `init` every time layer is changed (done, 27.9.2016)
   * Release sample code
 
 
