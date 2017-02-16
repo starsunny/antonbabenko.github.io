@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/antonbabenko
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://www.antonbabenko.com
+  * I am antonbabenko (https://keybase.io/antonbabenko) on keybase.
+  * I have a public key ASBBrIE8mpSuelQ7SEJlvzVtP2gEpcAI706U-i-NhVVHNQo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "012041ac813c9a94ae7a543b484265bf356d3f6804a5c008ef4e94fa2f8d855547350a",
+            "host": "keybase.io",
+            "kid": "012041ac813c9a94ae7a543b484265bf356d3f6804a5c008ef4e94fa2f8d855547350a",
+            "uid": "34a0d56aa985feaa264f6a8b4c5c9300",
+            "username": "antonbabenko"
+        },
+        "service": {
+            "hostname": "www.antonbabenko.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.18"
+    },
+    "ctime": 1487279273,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1487279115,
+        "hash": "14561894afe06f045f2eb6df5256b9c3be8e6e6e1d7c213675afdb3bb768bf38b8f07daa4da87c8736753f12813e661508361dd56a3d90f930e8ebdf25d4e640",
+        "seqno": 897849
+    },
+    "prev": "7a6caed6a4ad442b9d96b827d73be5f81e5414bbe6aa546eed48d908c96412c1",
+    "seqno": 12,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgQayBPJqUrnpUO0hCZb81bT9oBKXACO9OlPovjYVVRzUKp3BheWxvYWTFAwB7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwNDFhYzgxM2M5YTk0YWU3YTU0M2I0ODQyNjViZjM1NmQzZjY4MDRhNWMwMDhlZjRlOTRmYTJmOGQ4NTU1NDczNTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwNDFhYzgxM2M5YTk0YWU3YTU0M2I0ODQyNjViZjM1NmQzZjY4MDRhNWMwMDhlZjRlOTRmYTJmOGQ4NTU1NDczNTBhIiwidWlkIjoiMzRhMGQ1NmFhOTg1ZmVhYTI2NGY2YThiNGM1YzkzMDAiLCJ1c2VybmFtZSI6ImFudG9uYmFiZW5rbyJ9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoid3d3LmFudG9uYmFiZW5rby5jb20iLCJwcm90b2NvbCI6Imh0dHA6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjE4In0sImN0aW1lIjoxNDg3Mjc5MjczLCJleHBpcmVfaW4iOjUwNDU3NjAwMCwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE0ODcyNzkxMTUsImhhc2giOiIxNDU2MTg5NGFmZTA2ZjA0NWYyZWI2ZGY1MjU2YjljM2JlOGU2ZTZlMWQ3YzIxMzY3NWFmZGIzYmI3NjhiZjM4YjhmMDdkYWE0ZGE4N2M4NzM2NzUzZjEyODEzZTY2MTUwODM2MWRkNTZhM2Q5MGY5MzBlOGViZGYyNWQ0ZTY0MCIsInNlcW5vIjo4OTc4NDl9LCJwcmV2IjoiN2E2Y2FlZDZhNGFkNDQyYjlkOTZiODI3ZDczYmU1ZjgxZTU0MTRiYmU2YWE1NDZlZWQ0OGQ5MDhjOTY0MTJjMSIsInNlcW5vIjoxMiwidGFnIjoic2lnbmF0dXJlIn2jc2lnxEBGeZoYRLiZUqIwn5sCTvOE4YJweP0dkx5gfW2wYdTkbIx/qNw7hicUG/qGO7uyY5yloOLwNxbpEv8etQN+KDoKqHNpZ190eXBlIKRoYXNogqR0eXBlCKV2YWx1ZcQgHujrPqKwoDsvHoPys7ABTHlpfyO5P5h+/bCkxtgD3HOjdGFnzQICp3ZlcnNpb24B
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/antonbabenko
+
+==================================================================
+
